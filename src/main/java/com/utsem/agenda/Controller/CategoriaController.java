@@ -1,6 +1,7 @@
 package com.utsem.agenda.Controller;
 
 
+import com.utsem.agenda.DTO.CategoriaDTO;
 import com.utsem.agenda.Model.Categoria;
 import com.utsem.agenda.Services.CategoriaService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,18 +22,9 @@ public class CategoriaController {
     }
 
     @GetMapping("mostrar")
-    public List<Categoria> mostrar(){
+    public List<CategoriaDTO> mostrar(){
         return categoriaService.mostrar();
     }
 
-    @DeleteMapping("eliminar")
-    public String elimina(@RequestBody Categoria categoria){
-        return categoriaService.elimina(categoria);
-
-    }
-    @PutMapping("actualizar")
-    public String actualiza(@RequestBody Categoria categoria) {
-        return categoriaService.actualiza(categoria);
-    }
 
 }

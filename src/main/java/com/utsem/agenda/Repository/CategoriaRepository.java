@@ -8,7 +8,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.Optional;
 
 public interface CategoriaRepository extends JpaRepository<Categoria, Long> {
-    Optional<Categoria> existsCategoriasByColorOrNombre(String color, String nombre);
+    Optional<Categoria> findByColorOrNombre(String color, String nombre);
 
     Optional<Categoria> findByColor (String color);
 }

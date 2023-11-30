@@ -1,20 +1,27 @@
 package com.utsem.agenda.Services;
 
+import com.utsem.agenda.DTO.CategoriaDTO;
 import com.utsem.agenda.Model.Categoria;
 import com.utsem.agenda.Repository.CategoriaRepository;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class CategoriaService {
     @Autowired
     CategoriaRepository categoriaRepository;
+    @Autowired
+    ModelMapper mapper;
+
     public String nueva(@RequestBody Categoria categoria) {
-        Optional<Categoria> existingCategoria = categoriaRepository.existsCategoriasByColorOrNombre(categoria.getColor(), categoria.getNombre());
+        Optional<Categoria> existingCategoria = categoriaRepository.findByColorOrNombre(categoria.getColor(), categoria.getNombre());
+        System.out.println(existingCategoria + "Cat");
 
         if (existingCategoria.isPresent()) {
             return "La categoría ya existe";
@@ -23,31 +30,16 @@ public class CategoriaService {
             return "Categoría guardada";
         }
     }
-    public List<Categoria> mostrar(){
-        return categoriaRepository.findAll();
+
+    public List<CategoriaDTO> mostrar(){
+        List<Categoria> categorias = categoriaRepository.findAll();
+
+        List<CategoriaDTO> categoriaDTOs = categorias.stream()
+                .map(categoria -> mapper.map(categoria, CategoriaDTO.class))
+                .collect(Collectors.toList());
+
+        return categoriaDTOs;
     }
 
-    public String elimina(@RequestBody Categoria categoria){
-        Optional<Categoria> pro = categoriaRepository.findById(categoria.getId());
-        if(pro.isPresent()) {
-            categoriaRepository.delete(pro.get());
-            return "Categoria eliminada";
-        }
-        else {
-            return "Categoria no encontrada";
-        }
 
-    }
-    public String actualiza(@RequestBody Categoria categoria) {
-        Optional<Categoria>cat = categoriaRepository.findById(categoria.getId());
-        if(cat.isPresent()) {
-            Categoria miCat =cat.get();
-            miCat.setNombre(categoria.getNombre());
-            //cat.get().setNombre(categoria.getNombre());
-            return "Categoria actualizada";
-        }
-        else {
-            return "Categoria no encontrada";
-        }
-    }
 }

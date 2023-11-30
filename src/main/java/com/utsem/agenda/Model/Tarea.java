@@ -16,8 +16,7 @@ public class Tarea {
     @Column
     private String color;
     @Column
-    private String User;
-
+    private String user;
     @ManyToOne
     private Categoria categorias;
 
@@ -58,11 +57,11 @@ public class Tarea {
 
 
     public String getUser() {
-        return User;
+        return user;
     }
 
     public void setUser(String user) {
-        User = user;
+        this.user = user;
     }
 
     public Categoria getCategorias() {

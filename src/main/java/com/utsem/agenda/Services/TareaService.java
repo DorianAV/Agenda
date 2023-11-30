@@ -1,5 +1,6 @@
 package com.utsem.agenda.Services;
 
+import com.utsem.agenda.DTO.CategoriaDTO;
 import com.utsem.agenda.DTO.TareaDTO;
 import com.utsem.agenda.Model.Categoria;
 import com.utsem.agenda.Model.Tarea;
@@ -12,7 +13,10 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class TareaService {
@@ -32,8 +36,21 @@ public class TareaService {
         tarea.setUsuario(usuario);
         Optional<Categoria> cat = categoriaRepository.findByColor(tareaDTO.getColor());
         Categoria categoria= cat.get();
-        tarea.setColor(categoria.getColor());
+        tarea.setCategorias(categoria);
         tareaRepository.save(tarea);
-        return "ProductoGuardado";
+        return "Tarea Guardada";
     }
+
+    public List<TareaDTO> mostrar(HttpSession session) {
+        String usuario = (String) session.getAttribute("Usuario");
+        List<Tarea> tareas = tareaRepository.findAllByUser(usuario);
+
+        List<TareaDTO> tareaDTOS = tareas.stream()
+                .map(tarea -> mapper.map(tarea, TareaDTO.class))
+                .collect(Collectors.toList());
+
+        return tareaDTOS;
+    }
+
+
 }
