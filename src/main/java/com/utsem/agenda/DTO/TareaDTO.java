@@ -1,48 +1,36 @@
 package com.utsem.agenda.DTO;
 
 import com.utsem.agenda.Model.Categoria;
+import jakarta.persistence.Column;
 
 import java.time.LocalDate;
 
 public class TareaDTO {
-    private String descripcion;
-    private LocalDate fechaCreacion;
-    private LocalDate fechaVencimiento;
-    private Byte estado;
+    private String title;
+    private String start;
+    private String color;
 
-
-
-    public String getDescripcion() {
-        return descripcion;
+    public String getTitle() {
+        return title;
     }
 
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
-    public LocalDate getFechaCreacion() {
-        return fechaCreacion;
+    public String getStart() {
+        return start;
     }
 
-    public void setFechaCreacion(LocalDate fechaCreacion) {
-        this.fechaCreacion = fechaCreacion;
+    public void setStart(String start) {
+        this.start = start;
     }
 
-    public LocalDate getFechaVencimiento() {
-        return fechaVencimiento;
+    public String getColor() {
+        return color;
     }
 
-    public void setFechaVencimiento(LocalDate fechaVencimiento) {
-        this.fechaVencimiento = fechaVencimiento;
+    public void setColor(String color) {
+        this.color = color;
     }
-
-    public Byte getEstado() {
-        return estado;
-    }
-
-    public void setEstado(Byte estado) {
-        this.estado = estado;
-    }
-
-
 }

@@ -11,15 +11,11 @@ public class Tarea {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column
-    private String descripcion;
+    private String title;
     @Column
-    private LocalDate fechaCreacion;
-
+    private String start;
     @Column
-    private LocalDate fechaVencimiento;
-
-    @Column
-    private Byte estado;
+    private String color;
 
     @ManyToOne
     private Categoria categorias;
@@ -35,37 +31,31 @@ public class Tarea {
         this.id = id;
     }
 
-    public String getDescripcion() {
-        return descripcion;
+    public String getTitle() {
+        return title;
     }
 
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
-    public LocalDate getFechaCreacion() {
-        return fechaCreacion;
+    public String getStart() {
+        return start;
     }
 
-    public void setFechaCreacion(LocalDate fechaCreacion) {
-        this.fechaCreacion = fechaCreacion;
+    public void setStart(String start) {
+        this.start = start;
     }
 
-    public LocalDate getFechaVencimiento() {
-        return fechaVencimiento;
+    public String getColor() {
+        return color;
     }
 
-    public void setFechaVencimiento(LocalDate fechaVencimiento) {
-        this.fechaVencimiento = fechaVencimiento;
+    public void setColor(String color) {
+        this.color = color;
     }
 
-    public Byte getEstado() {
-        return estado;
-    }
 
-    public void setEstado(Byte estado) {
-        this.estado = estado;
-    }
 
     public Categoria getCategorias() {
         return categorias;

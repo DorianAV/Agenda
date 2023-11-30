@@ -9,6 +9,8 @@ public class Categoria {
     private long id;
     @Column
     private String nombre;
+    @Column
+    private String color;
 
     public long getId() {
         return id;
@@ -24,5 +26,13 @@ public class Categoria {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
+    }
+
+    public String getColor() {
+        return color;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
     }
 }

@@ -20,9 +20,11 @@ public class UsuarioService {
 
 
     public boolean Logged(HttpSession session, @RequestBody UsuarioDTO usuarioDTO) {
+        System.out.println(session.getId());
         Optional<Usuario> user = usuarioRepository.findByUsuarioAndContraseña(usuarioDTO.getUsuario(),usuarioDTO.getContraseñaLogin());
         if (user.isPresent()){
             session.setAttribute("Usuario", usuarioDTO.getUsuario());
+            System.out.println(session.getAttribute("Usuario")+ "creado");
             return true;
         }
         else{
@@ -30,8 +32,20 @@ public class UsuarioService {
         }
     }
 
+    public boolean isLogged(HttpSession session){
+        System.out.println(session.getId());
+        if (session.getAttribute("Usuario")==null){
+            System.out.println(session.getAttribute("Usuario"));
+            return false;
+        }
+        else return true;
+    }
+
+
+
 
     public String registro(@RequestBody Usuario usuario) {
+
 
         Optional<Usuario> username = usuarioRepository.findByUsuario(usuario.getUsuario());
 

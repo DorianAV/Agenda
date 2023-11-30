@@ -19,23 +19,24 @@ public class UsuarioController {
 
     @PostMapping("login")
     public String login(HttpSession session, @RequestBody UsuarioDTO usuarioDTO) {
-        System.out.println(usuarioDTO.getUsuario()+usuarioDTO.getContraseñaLogin());
         if (usuarioService.Logged(session, usuarioDTO)==true){
             return "Loggin exitoso, bienvenido "+ session.getAttribute("Usuario");
         }
         else return "Error al iniciar sesión, verifica que el usuario o contraseña sean correctos";
     }
+
+
     @PostMapping("isLogged")
     public boolean logged(HttpSession session){
-        if(session.getAttribute("Usuario")==null){
-            return false;
-        }
-        else return true;
+        return usuarioService.isLogged(session);
+
     }
 
     @PostMapping("registro")
     public String registro(@RequestBody Usuario usuario) {
         return usuarioService.registro(usuario);
     }
+
+
 
 }
