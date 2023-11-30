@@ -3,7 +3,6 @@ package com.utsem.agenda.Model;
 
 import jakarta.persistence.*;
 
-import java.time.LocalDate;
 
 @Entity
 public class Tarea {
@@ -16,6 +15,8 @@ public class Tarea {
     private String start;
     @Column
     private String color;
+    @Column
+    private String User;
 
     @ManyToOne
     private Categoria categorias;
@@ -56,6 +57,13 @@ public class Tarea {
     }
 
 
+    public String getUser() {
+        return User;
+    }
+
+    public void setUser(String user) {
+        User = user;
+    }
 
     public Categoria getCategorias() {
         return categorias;

@@ -7,9 +7,9 @@ public class Categoria {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    @Column
+    @Column(unique = true)
     private String nombre;
-    @Column
+    @Column(unique = true)
     private String color;
 
     public long getId() {

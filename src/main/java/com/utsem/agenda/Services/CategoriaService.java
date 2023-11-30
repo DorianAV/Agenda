@@ -14,8 +14,14 @@ public class CategoriaService {
     @Autowired
     CategoriaRepository categoriaRepository;
     public String nueva(@RequestBody Categoria categoria) {
-        categoriaRepository.save(categoria);
-        return "Categoria guardada";
+        Optional<Categoria> existingCategoria = categoriaRepository.existsCategoriasByColorOrNombre(categoria.getColor(), categoria.getNombre());
+
+        if (existingCategoria.isPresent()) {
+            return "La categoría ya existe";
+        } else {
+            categoriaRepository.save(categoria);
+            return "Categoría guardada";
+        }
     }
     public List<Categoria> mostrar(){
         return categoriaRepository.findAll();
