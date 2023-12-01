@@ -16,7 +16,6 @@ public class UsuarioController {
     @Autowired
     UsuarioService usuarioService;
 
-
     @PostMapping("login")
     public String login(HttpSession session, @RequestBody UsuarioDTO usuarioDTO) {
         if (usuarioService.Logged(session, usuarioDTO)==true){
@@ -25,18 +24,13 @@ public class UsuarioController {
         else return "Error al iniciar sesión, verifica que el usuario o contraseña sean correctos";
     }
 
-
     @PostMapping("isLogged")
     public boolean logged(HttpSession session){
         return usuarioService.isLogged(session);
-
     }
 
     @PostMapping("registro")
     public String registro(@RequestBody Usuario usuario) {
         return usuarioService.registro(usuario);
     }
-
-
-
 }

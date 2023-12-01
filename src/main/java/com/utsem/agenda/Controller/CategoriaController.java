@@ -1,14 +1,11 @@
 package com.utsem.agenda.Controller;
 
-
 import com.utsem.agenda.DTO.CategoriaDTO;
 import com.utsem.agenda.Model.Categoria;
 import com.utsem.agenda.Services.CategoriaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("categorias")
@@ -25,6 +22,4 @@ public class CategoriaController {
     public List<CategoriaDTO> mostrar(){
         return categoriaService.mostrar();
     }
-
-
 }

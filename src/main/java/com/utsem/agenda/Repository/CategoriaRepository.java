@@ -9,6 +9,5 @@ import java.util.Optional;
 
 public interface CategoriaRepository extends JpaRepository<Categoria, Long> {
     Optional<Categoria> findByColorOrNombre(String color, String nombre);
-
     Optional<Categoria> findByColor (String color);
 }

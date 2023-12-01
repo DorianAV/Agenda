@@ -8,7 +8,6 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
-
 import java.util.Optional;
 
 @Service
@@ -18,11 +17,9 @@ public class UsuarioService {
     @Autowired
     ModelMapper mapper;
 
-
     public boolean Logged(HttpSession session, @RequestBody UsuarioDTO usuarioDTO) {
         System.out.println(session.getId());
         Optional<Usuario> user = usuarioRepository.findByUsuarioAndContraseña(usuarioDTO.getUsuario(), usuarioDTO.getContraseñaLogin());
-
         if (user.isPresent()) {
             Usuario usuario = user.get();
             session.setAttribute("idUsr", usuario.getId());
@@ -34,7 +31,6 @@ public class UsuarioService {
         }
     }
 
-
     public boolean isLogged(HttpSession session){
         System.out.println(session.getId());
         if (session.getAttribute("Usuario")==null){
@@ -44,14 +40,8 @@ public class UsuarioService {
         else return true;
     }
 
-
-
-
     public String registro(@RequestBody Usuario usuario) {
-
-
         Optional<Usuario> username = usuarioRepository.findByUsuario(usuario.getUsuario());
-
         if (username.isEmpty()){
             try {
                 usuarioRepository.save(usuario);

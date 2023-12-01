@@ -1,6 +1,5 @@
 package com.utsem.agenda.Services;
 
-import com.utsem.agenda.DTO.CategoriaDTO;
 import com.utsem.agenda.DTO.TareaDTO;
 import com.utsem.agenda.Model.Categoria;
 import com.utsem.agenda.Model.Tarea;
@@ -12,8 +11,6 @@ import jakarta.servlet.http.HttpSession;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -48,9 +45,6 @@ public class TareaService {
         List<TareaDTO> tareaDTOS = tareas.stream()
                 .map(tarea -> mapper.map(tarea, TareaDTO.class))
                 .collect(Collectors.toList());
-
         return tareaDTOS;
     }
-
-
 }

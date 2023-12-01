@@ -1,7 +1,5 @@
 package com.utsem.agenda.DTO;
 
-;
-
 public class UsuarioDTO {
     private String Nombre;
 

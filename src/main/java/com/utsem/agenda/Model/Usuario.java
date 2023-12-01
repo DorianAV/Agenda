@@ -10,7 +10,6 @@ public class Usuario {
     private Long id;
     @Column
     private String nombre;
-
     @Column(unique = true)
     private String usuario;
     @Column
