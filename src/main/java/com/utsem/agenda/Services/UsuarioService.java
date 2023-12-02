@@ -21,8 +21,6 @@ public class UsuarioService {
         System.out.println(session.getId());
         Optional<Usuario> user = usuarioRepository.findByUsuarioAndContraseña(usuarioDTO.getUsuario(), usuarioDTO.getContraseñaLogin());
         if (user.isPresent()) {
-            Usuario usuario = user.get();
-            session.setAttribute("idUsr", usuario.getId());
             session.setAttribute("Usuario", usuarioDTO.getUsuario());
             System.out.println(session.getAttribute("Usuario") + " creado");
             return true;
